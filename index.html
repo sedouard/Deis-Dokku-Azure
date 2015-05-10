@@ -7,7 +7,7 @@
 		<title>Pike Street Theme</title>
 
 		<meta name="description" content="A Microsoft theme for the amazing reveal.js">
-		<meta name="author" content="Felix Rieseberg">
+		<meta name="author" content="Steven Edouard">
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -45,179 +45,203 @@
 			<div class="slides">
 				<section data-background-video="https://compass-ssl.surface.com/assets/11/4e/114ea758-b2b9-4567-bedd-77086c3d80fb.mp4?n=vid-loop-100314.mp4">
 					<div class="accent">
-						<h2>Reveal.js Theme</h2>
-						<h1>Pike Street</h1>
+						<h2>Deis, Dokku & Azure</h2>
+						<h1></h1>
 					</div>
-					<small>Felix Rieseberg<br />Open Source Engineer, Microsoft</small>
+					<small><a href="https://stevenedouard.com">Steven Edouard</a><br />Sofware Engineer, Microsoft</small>
 
 					<aside class="notes">
-						Hi, I'm a Speaker Note. You can open the Speaker View by hitting [S] on your keyboard.
+						Give general inroduction about docker, containerization, dokku and deis.
 					</aside>
-				</section>
-
-				<section class="inverse">
-					<h1>Icons</h1>
-					<div class="icon-group">
-						<i class="fa fa-user fa-fw"></i>
-						<i class="fa fa-users fa-fw"></i>
-						<i class="fa fa-university fa-fw"></i>
-					</div>
-					<p><a href="http://fortawesome.github.io/Font-Awesome/">Font Awesome</a> is included, so go ahead and use some icons!</p>
 				</section>
 
 				<section data-background="assets/patternbg.png" data-background-size="700px" data-background-repeat="repeat">
 					<section>
-						<h1>Patterns & Fragments</h1>
-						<h1 class="alt">Moving Parts</h1>
-						<br />
+						<h1>Moving Parts</h1>
 						<h3>
-							<span class="fragment fade-in"><i class="fa fa-rocket"></i> Hardware</span>
-							<span class="fragment fade-in"><i class="fa fa-mobile"></i> Software</span>
-							<span class="fragment fade-in"><i class="fa fa-cloud"></i> Data</span>
-							<span class="fragment fade-in"><i class="fa fa-lock"></i> Security</span>
+							<span class="fragment fade-in"><i class="fa fa-rocket"></i> Docker </span>
+							<span class="fragment fade-in"><i class="fa fa-magic"></i> Deis </span>
+							<span class="fragment fade-in"><i class="fa fa-cloud"></i> Azure</span>
 						</h3>
 					</section>
 				</section>
 
 				<!-- Example of nested vertical slides -->
 				<section>
-					<section>
-						<h2>Vertical Slides</h2>
-						<p>Slides can be nested inside of each other.</p>
-						<p>Use the <em>Space</em> key to navigate through all slides.</p>
-						<br>
-						<i class="fa fa-arrow-down fa-4x"></i>
+					<section data-markdown>
+						## Dokku
+						### Great for
+						- Deveopment Deployments
+						- Running Builds
+						- Testing
+						- Non-critical stuff (Personal Blogs, etc...)
 					</section>
 					<section>
-						<h2>Basement Level 1</h2>
-						<p>Nested slides are useful for adding additional detail underneath a high level horizontal slide.</p>
+						<h2>Dokku</h2>
+						<p>Docker-powered Heroku-in-a-Box</p>
+						<p>Git-push Apps w/ Buildpacks</p>
+						<section data-markdown>
+						```bash
+						$ git clone https://github.com/heroku/node-js-sample
+						$ cd node-js-sample
+						$ git remote add dokku dokku@dokku-alt.com:node-js-app
+						$ git push dokku master
+						Counting objects: 296, done.
+						Delta compression using up to 4 threads.
+						Compressing objects: 100% (254/254), done.
+						Writing objects: 100% (296/296), 193.59 KiB, done.
+						Total 296 (delta 25), reused 276 (delta 13)
+						-----> Building node-js-app ...
+						       Node.js app detected
+						-----> Resolving engine versions
+
+						... blah blah blah ...
+
+						-----> Application deployed:
+						       http://node-js-app.progriumapp.com
+						```
+						</section>
 					</section>
 					<section>
-						<h2>Basement Level 2</h2>
-						<p>That's it, time to go back up.</p>
-						<br>
-						<i class="fa fa-arrow-up fa-4x"></i>
+						<h2>Dokku</h2>
+						<p>Or Take a Dockerfile...</p>
+						<section data-markdown>
+						```dockerfile
+							FROM ubuntu:trusty
+
+							MAINTAINER Steven Edouard <steven.edouard1@gmail.com>
+
+							ENV DEBIAN_FRONTEND noninteractive
+
+
+							RUN apt-get update -y -y
+							RUN apt-get install wget -y
+							RUN wget http://nodejs.org/dist/v0.12.0/node-v0.12.0-linux-x64.tar.gz && sudo tar -C /usr/local --strip-components 1 -xzf node$
+							RUN sudo apt-get install build-essential -y
+						```
+						</section>
+					</section>
+					<section data-markdown>
+						## Dokku
+						And git-push it!
+						```
+							git push dokku master
+							remote: Checking out files: 100% (54/54), done.
+							remote: HEAD is now at eb8c278... test push
+							remote: -----> Building worker-azure using Dockerfile...
+							remote: Sending build context to Docker daemon 161.2 MB
+							remote: Sending build context to Docker daemon 
+							remote: Step 0 : FROM ubuntu:trusty
+							remote:  ---> 5ba9dab47459
+							remote: Step 1 : MAINTAINER Steven Edouard <steven.edouard1@gmail.com>
+							remote:  ---> Using cache
+							remote:  ---> a8edc2f470a9
+							remote: Step 3 : RUN apt-get update -y -y
+							...
+							remote: Step 16: CMD npm install && npm test && npm start
+						```
+					</section>
+					<section data-markdown>
+						## Dokku
+						### [Dokku-alt](https://github.com/dokku-alt/dokku-alt) is a fantastic fork that...
+						- Has MongoDB, Redis etc. plugins
+						- Super easy update & install script
 					</section>
 				</section>
 
 				<!-- Example for Fragment Styles -->
 				<section>
-					<section id="fragments">
-						<h2>Fragments</h2>
-						<p>Hit the next arrow...</p>
-						<p class="fragment">... to step through ...</p>
-						<p><span class="fragment">... a</span> <span class="fragment">fragmented</span> <span class="fragment">slide.</span></p>
-
+					
+					<section>
+						<h2>Deis</h2>
+						<p class="fragment">Dokku all grown up...</p>
+						<div class="fragment">
+							<section data-markdown>
+							- Runs on CoreOS
+							- Manages a cluster of VMs
+							- Git deploy w/ Buildpacks & Dockerfile
+							- Horizontally scalable
+							</section>
+						</div>
 						<aside class="notes">
 							This slide has fragments which are also stepped through in the notes window.
 						</aside>
+
 					</section>
 					<section>
-						<h2>Fragment Styles</h2>
-						<p>There's different types of fragments, like:</p>
-						<p class="fragment grow">grow</p>
-						<p class="fragment shrink">shrink</p>
-						<p class="fragment roll-in">roll-in</p>
-						<p class="fragment fade-out">fade-out</p>
-						<p class="fragment current-visible">current-visible</p>
-						<p class="fragment highlight-red">highlight-red</p>
-						<p class="fragment highlight-blue">highlight-blue</p>
+						<h2>Deis</h2>
+						<section data-markdown>
+							## Scale Effortlessly
+							```
+							deis login sedouard http://deis.captainkaption.com
+							# Scale all web apps to 4 containers each
+							deis scale web=4
+							Scaling processes... but first, coffee!  
+							done in 38s                                                                     
+							--- web:                                                                        
+							web.1 up (v3)                                                                   
+							web.2 up (v3)                                                                   
+							web.3 up (v3)                                                                   
+							web.4 up (v3)  
+							```
+						</section>
 					</section>
+					
+					<section data-markdown>
+						## Deis
+						### Automate with Controller API
+						
+						```
+						Request:
+						POST /v1/apps/ HTTP/1.1
+						Host: deis.example.com
+						Content-Type: application/json
+						Authorization: token abc123
+						```
+						```
+						Reponse:
+						HTTP/1.1 201 CREATED
+						X_DEIS_API_VERSION: 1.1
+						X_DEIS_PLATFORM_VERSION: 1.4.1
+						Content-Type: application/json
+						
+						{
+						    "created": "2014-01-01T00:00:00UTC",
+						    "id": "example-go",
+						    "owner": "test",
+						    "structure": {},
+						    "updated": "2014-01-01T00:00:00UTC",
+						    "url": "example-go.example.com",
+						    "uuid": "de1bf5b5-4a72-4f94-a10c-d2a3741cdf75"
+						}
+						```
+
+					</section>
+
 				</section>
 
 				<!-- Example for pretty code -->
 				<section>
-					<h2>Highlighted, Editable Code!</h2>
-					<pre><code data-trim contenteditable>
-function linkify( selector ) {
-  if( supports3DTransforms ) {
-
-    var nodes = document.querySelectorAll( selector );
-
-    for( var i = 0, len = nodes.length; i &lt; len; i++ ) {
-      var node = nodes[i];
-
-      if( !node.className ) {
-        node.className += ' roll';
-      }
-    }
-  }
-}
-					</code></pre>
-					<p>Code syntax highlighting courtesy of <a href="http://softwaremaniacs.org/soft/highlight/en/description/">highlight.js</a>.</p>
+					<section>
+						<h2>Azure</h2>
+						
+						<h3>Powerful Infrastructure</h3>
+						<p>Powerful Orchestration</p>
+					</section>
+					
+					<section>
+						<h2>Azure</h2>
+						<section data-markdown>
+							Checkout our scripts to deploy [dokku](https://github.com/sedouard/dokku-azure) and [deis](http://docs.deis.io/en/latest/installing_deis/azure/)
+						</section>
+					</section>
 				</section>
-
+				
 				<section>
-					<h2>Code Editors</h2>
-					<p>The beauty of HTML5 & JavaScript: Embed whatever you want, including code editors like JSBin.</p>
-					<a class="jsbin-embed" href="http://jsbin.com/kutobaqobu/2/embed?js,console">JS Bin</a><script src="http://static.jsbin.com/js/embed.js"></script>
+					<h2>Demo: Working with an Azure Dokku Deployment</h2>
 				</section>
-
 				<section>
-					<h2>Marvelous List</h2>
-					<ul>
-						<li>No order here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-						<li>Or here</li>
-					</ul>
-				</section>
-
-				<section>
-					<h2>Fantastic Ordered List</h2>
-					<ol>
-						<li>One is smaller than...</li>
-						<li>Two is smaller than...</li>
-						<li>Three!</li>
-					</ol>
-				</section>
-
-				<section>
-					<h2>Tabular Tables</h2>
-					<table>
-						<thead>
-							<tr>
-								<th>Item</th>
-								<th>Value</th>
-								<th>Quantity</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>Apples</td>
-								<td>$1</td>
-								<td>7</td>
-							<tr>
-							<tr>
-								<td>Lemonade</td>
-								<td>$2</td>
-								<td>18</td>
-							<tr>
-							<tr>
-								<td>Bread</td>
-								<td>$3</td>
-								<td>2</td>
-							<tr>
-						</tbody>
-					</table>
-				</section>
-
-				<section>
-					<h2>Intergalactic Interconnections</h2>
-					<p>
-						You can link between slides internally,
-						<a href="#/2/3">like this</a>.
-					</p>
-				</section>
-
-				<section>
-					<h2>Speaker View</h2>
-					<p>There's a speaker view. It includes a timer, preview of the upcoming slide as well as your speaker notes.</p>
-					<p>Press the <em>S</em> key to try it out.</p>
-
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
+					<h2>Demo: Working with an Azure Deis Deployment</h2>
 				</section>
 
 			</div>
