@@ -48,7 +48,7 @@
 						<h2>Deis, Dokku & Azure</h2>
 						<h1></h1>
 					</div>
-					<small><a href="http://stevenedouard.com">Steven Edouard</a><br />Sofware Engineer, Microsoft</small>
+					<small>Steven Edouard<br /> <a href="http://stevenedouard.com">stevenedouard.com</a></br>Sofware Engineer, Microsoft</small>
 
 					<aside class="notes">
 						Give general inroduction about docker, containerization, dokku and deis.
@@ -80,27 +80,9 @@
 						<h2>Dokku</h2>
 						<p>Docker-powered Heroku-in-a-Box</p>
 						<p>Git-push Apps w/ Buildpacks</p>
-						<section data-markdown>
-						```bash
-						$ git clone https://github.com/heroku/node-js-sample
-						$ cd node-js-sample
-						$ git remote add dokku dokku@dokku-alt.com:node-js-app
-						$ git push dokku master
-						Counting objects: 296, done.
-						Delta compression using up to 4 threads.
-						Compressing objects: 100% (254/254), done.
-						Writing objects: 100% (296/296), 193.59 KiB, done.
-						Total 296 (delta 25), reused 276 (delta 13)
-						-----> Building node-js-app ...
-						       Node.js app detected
-						-----> Resolving engine versions
-
-						... blah blah blah ...
-
-						-----> Application deployed:
-						       http://node-js-app.progriumapp.com
-						```
-						</section>
+						
+						<script type="text/javascript" src="https://asciinema.org/a/19852.js" id="asciicast-19852" async></script>
+						
 					</section>
 					<section>
 						<h2>Dokku</h2>
@@ -121,31 +103,21 @@
 						```
 						</section>
 					</section>
-					<section data-markdown>
-						## Dokku
-						And git-push it!
-						```
-							git push dokku master
-							remote: Checking out files: 100% (54/54), done.
-							remote: HEAD is now at eb8c278... test push
-							remote: -----> Building worker-azure using Dockerfile...
-							remote: Sending build context to Docker daemon 161.2 MB
-							remote: Sending build context to Docker daemon 
-							remote: Step 0 : FROM ubuntu:trusty
-							remote:  ---> 5ba9dab47459
-							remote: Step 1 : MAINTAINER Steven Edouard <steven.edouard1@gmail.com>
-							remote:  ---> Using cache
-							remote:  ---> a8edc2f470a9
-							remote: Step 3 : RUN apt-get update -y -y
-							...
-							remote: Step 16: CMD npm install && npm test && npm start
-						```
+					<section>
+						<h2>Dokku</h2>
+						<p>And git-push it!</p>
+						<script type="text/javascript" src="https://asciinema.org/a/19854.js" id="asciicast-19854" async></script>
 					</section>
 					<section data-markdown>
 						## Dokku
 						### [Dokku-alt](https://github.com/dokku-alt/dokku-alt) is a fantastic fork that...
 						- Has MongoDB, Redis etc. plugins
 						- Super easy update & install script
+					</section>
+					<section>
+						<h2>Dokku</h2> 
+						<p>Provisioning on Azure</p>
+						<script type="text/javascript" src="https://asciinema.org/a/19864.js" id="asciicast-19864" async></script>
 					</section>
 				</section>
 
@@ -170,23 +142,14 @@
 					</section>
 					<section>
 						<h2>Deis</h2>
-						<section data-markdown>
-							## Scale Effortlessly
-							```
-							deis login sedouard http://deis.captainkaption.com
-							# Scale all web apps to 4 containers each
-							deis scale web=4
-							Scaling processes... but first, coffee!  
-							done in 38s                                                                     
-							--- web:                                                                        
-							web.1 up (v3)                                                                   
-							web.2 up (v3)                                                                   
-							web.3 up (v3)                                                                   
-							web.4 up (v3)  
-							```
-						</section>
+						<h3>Scale Effortlessly</h3>
+						<script type="text/javascript" src="https://asciinema.org/a/19853.js" id="asciicast-19853" async></script>
 					</section>
-					
+					<section>
+						<h2>Oops! Made a Booboo?</h2>
+						<h3>Rollback is a Sinch</h3>
+						<script type="text/javascript" src="https://asciinema.org/a/19859.js" id="asciicast-19859" async></script>
+					</section>
 					<section data-markdown>
 						## Deis
 						### Automate with Controller API
@@ -217,7 +180,11 @@
 						```
 
 					</section>
-
+					<section>
+						<h2>Deis</h2> 
+						<p>Provisioning on Azure</p>
+						<a href="https://asciinema.org/a/19851" target="_blank"><img src="https://asciinema.org/a/19851.png" /></a>
+					</section>
 				</section>
 
 				<!-- Example for pretty code -->
@@ -235,15 +202,10 @@
 						</section>
 					</section>
 				</section>
-				
-				<section>
-					<h2>Demo: Working with an Azure Dokku Deployment</h2>
-				</section>
-				<section>
-					<h2>Demo: Working with an Azure Deis Deployment</h2>
-				</section>
 				<section data-markdown>
-					Find this presentation on [github](https://github.com/sedouard/Deis-Dokku-Azure)
+					Find this presentation at:
+					
+					[sedouard.github.io/Deis-Dokku-Azure](https://sedouard.github.io/Deis-Dokku-Azure)
 				</section>
 			</div>
 
